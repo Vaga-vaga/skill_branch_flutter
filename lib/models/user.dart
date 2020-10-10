@@ -1,4 +1,4 @@
-import '../user_utils.dart';
+import '../string_util.dart';
 
 enum LoginType { email, phone }
 
@@ -43,9 +43,8 @@ class User {
 
   factory User({String name, String phone = "", String email = ""}) {
     if (name == null || name.isEmpty) throw Exception("User name is empty");
-    if (phone.isEmpty || email.isEmpty)
-      throw Exception("Phone or email is empty");
-
+    if (phone.isEmpty) return User.registerWithEmail(name: name, email: email);
+    if (email.isEmpty) return User.registerWithPhone(name: name, phone: phone);
     return User._(
         firstName: _getFirstName(name),
         lastName: _getLastName(name),

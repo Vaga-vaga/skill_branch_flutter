@@ -22,9 +22,10 @@ class UserHolder {
   }
 
   User registerUserByEmail(String fullName, String email) {
-    if (users.containsKey(email)) {
+    if (users.containsKey(email))
       throw Exception('A user with this email already exists');
-    }
+
+    if (!email.contains("@")) throw Exception('User email must contain @');
 
     User user = User.registerWithEmail(name: fullName, email: email);
     this.users[user.login] = user;

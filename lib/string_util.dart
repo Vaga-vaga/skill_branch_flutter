@@ -1,4 +1,4 @@
-extension UserUtils on String {
+extension StringUtil on String {
   String capitalize(String s) =>
       s[0].toUpperCase() + s.substring(1).toLowerCase();
 }
