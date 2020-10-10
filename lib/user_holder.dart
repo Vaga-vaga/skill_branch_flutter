@@ -22,26 +22,38 @@ class UserHolder {
   }
 
   User registerUserByEmail(String fullName, String email) {
-    if (!users.containsKey(email)) {
-      return users[email];
+    if (users.containsKey(email)) {
+      throw Exception('A user with this email already exists');
     }
+
     User user = User.registerWithEmail(name: fullName, email: email);
-    this.users[email] = user;
+    this.users[user.login] = user;
     return user;
   }
 
-  User registerUserByPhone(String name, String phone) {
-    User user = User();
+  User registerUserByPhone(String fullName, String phone) {
+    if (users.containsKey(phone)) {
+      throw Exception('A user with this phone already exists');
+    }
+    User user = User.registerWithPhone(name: fullName, phone: phone);
+    this.users[user.login] = user;
     return user;
   }
 
-  void setFriends(String userLogin, Iterable friends) {}
+  void setFriends(String userLogin, Iterable friends) {
+    if (!users.containsKey(userLogin)) {
+      throw Exception("User does not exist");
+    }
+    users[userLogin].addFriends(friends);
+  }
 
   User findUserInFriends(String fullName, User user) {
-    if (!users.containsKey(user.login)) {
+    User currentUser = getUserByLogin(fullName);
+    if (currentUser == null) throw Exception("User does not exist");
+    if (!currentUser.friends.contains(user)) {
       throw Exception("${user.login} is not a friend of the login");
     }
-    return users[user.login];
+    return user;
   }
 
   List<User> importUsers(Iterable<String> users) {

@@ -31,8 +31,18 @@ class User {
     this._type = LoginType.email;
   }
 
-  factory User({String name, String phone, String email}) {
+  User.registerWithPhone({String name, String phone}) {
     if (name.isEmpty) throw Exception("User name is empty");
+    if (phone.isEmpty || phone == null)
+      throw Exception("Enter don't empty phone number");
+    this._firstName = _getFirstName(name);
+    this._lastName = _getLastName(name);
+    this.phone = checkPhone(phone);
+    this._type = LoginType.phone;
+  }
+
+  factory User({String name, String phone = "", String email = ""}) {
+    if (name == null || name.isEmpty) throw Exception("User name is empty");
     if (phone.isEmpty || email.isEmpty)
       throw Exception("Phone or email is empty");
 
@@ -54,7 +64,7 @@ class User {
       throw Exception("Enter not empty phone number");
     } else if (!RegExp(pattern).hasMatch(phone)) {
       throw Exception(
-          "Enter valid phone number starting with + and containing 11 digits");
+          "Enter a valid phone number starting with a + and containing 11 digits");
     }
 
     return phone;
@@ -82,7 +92,6 @@ class User {
     if (object == null) {
       return false;
     }
-
     if (object is User) {
       return _firstName == object._firstName &&
           _lastName == object._lastName &&

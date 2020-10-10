@@ -62,7 +62,7 @@ void main() {
     });
 
     test('Email is not valid registerUserByPhone', () {
-      expect(() => holder.registerUserByEmail("John Ray", "dfdsag"),
+      expect(() => holder.registerUserByPhone("John Ray", "dfdsag"),
           throwsA(isA<Exception>()));
     });
 
@@ -105,8 +105,9 @@ void main() {
       holder.users[user.login] = user;
 
       List<User> friends = [
-        User(name: "Ray Dalio", email: "ray.dalio@gmail.com"),
-        User(name: "Warren Buffett", phone: "+1 833-914-92-65"),
+        User.registerWithEmail(name: "Ray Dalio", email: "ray.dalio@gmail.com"),
+        User.registerWithPhone(
+            name: "Warren Buffett", phone: "+1 833-914-92-65"),
       ];
 
       holder.setFriends(user.login, friends);
@@ -121,8 +122,9 @@ void main() {
       holder.users[user.login] = user;
 
       List<User> friends = [
-        User(name: "Ray Dalio", email: "ray.dalio@gmail.com"),
-        User(name: "Warren Buffett", phone: "+1 833-914-92-65"),
+        User.registerWithEmail(name: "Ray Dalio", email: "ray.dalio@gmail.com"),
+        User.registerWithPhone(
+            name: "Warren Buffett", phone: "+1 833-914-92-65"),
       ];
 
       expect(() => holder.findUserInFriends(user.login, friends[0]),
