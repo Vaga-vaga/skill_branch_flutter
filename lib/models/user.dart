@@ -22,6 +22,15 @@ class User {
     _type = email != null ? LoginType.email : LoginType.phone;
   }
 
+  User.registerWithEmail({String name, String email}) {
+    if (name.isEmpty) throw Exception("User name is empty");
+    if (email.isEmpty || email == null) throw Exception("Email is empty");
+    this._firstName = _getFirstName(name);
+    this._lastName = _getLastName(name);
+    this.email = checkEmail(email);
+    this._type = LoginType.email;
+  }
+
   factory User({String name, String phone, String email}) {
     if (name.isEmpty) throw Exception("User name is empty");
     if (phone.isEmpty || email.isEmpty)
