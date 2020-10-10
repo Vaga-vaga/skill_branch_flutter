@@ -56,7 +56,7 @@ class UserHolder {
     return user;
   }
 
-  List<User> importUsers(Iterable<String> users) {
+  List<User> importUsers(Iterable<String> usersToCreate) {
     List<User> users = [User()];
     return users;
   }
