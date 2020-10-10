@@ -58,7 +58,15 @@ class UserHolder {
   }
 
   List<User> importUsers(Iterable<String> usersToCreate) {
-    List<User> users = [User()];
-    return users;
+    List<User> newUsers = [];
+    for (String userData in usersToCreate) {
+      userData = userData.replaceAll(new RegExp('[\n]+'), '');
+      newUsers.add(User(
+          name: userData.split(';')[0].trim(),
+          email: userData.split(';')[1].trim(),
+          phone: userData.split(';')[2].trim()));
+    }
+
+    return newUsers;
   }
 }
