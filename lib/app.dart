@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: FullScreenImage(),
+      home: FullScreenImage(
+        name: 'Вася пупкин',
+        userName: "@vasya_pupkin",
+      ),
     );
   }
 }

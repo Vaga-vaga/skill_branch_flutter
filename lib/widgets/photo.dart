@@ -21,6 +21,7 @@ class Photo extends StatelessWidget {
               fit: BoxFit.fill,
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
+              width: 600,
             ),
           )),
     );
