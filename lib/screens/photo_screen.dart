@@ -6,11 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FullScreenImage extends StatefulWidget {
-  FullScreenImage({Key key, this.altDescription, this.userName, this.name})
+  FullScreenImage(
+      {Key key, this.altDescription, this.userName, this.name, this.photo})
       : super(key: key);
   final String altDescription;
   final String userName;
   final String name;
+  final String photo;
 
   @override
   State<StatefulWidget> createState() {
@@ -39,49 +41,47 @@ class _FullScreenImageState extends State<FullScreenImage> {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Photo(
-              photoLink: 'http://binar.6hi.ru/48.png',
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              child: Text('Save'),
             ),
-            Text(
-              widget.name,
-              style: AppStyles.h1Black,
+            onTap: () => false,
+          ),
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            child: Container(
+              // decoration: Decoration(),
+
+              child: Text('Visit'),
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: AppColors.dodgerBlue,
+                  borderRadius: BorderRadius.all(Radius.circular(17))),
             ),
-            Text(
-              widget.userName,
-              style: AppStyles.h5Black.copyWith(color: AppColors.manatee),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                ButtonBar(
-                  buttonMinWidth: 105,
-                  children: <Widget>[
-                    FlatButton(
-                      onPressed: () => null,
-                      child: Text(
-                        "Save",
-                        style: AppStyles.h4.copyWith(color: AppColors.white),
-                      ),
-                      color: AppColors.dodgerBlue,
-                    ),
-                    FlatButton(
-                        onPressed: () => null,
-                        child: Text(
-                          "Visit",
-                          style: AppStyles.h4.copyWith(color: AppColors.white),
-                        ),
-                        color: AppColors.dodgerBlue)
-                  ],
-                )
-              ],
-            )
-          ],
-        ),
+            onTap: () => false,
+          ),
+          Text(
+            widget.altDescription,
+            style: AppStyles.h3,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(
+            widget.name,
+            style: AppStyles.h1Black,
+          ),
+          Text(
+            widget.userName,
+            style: AppStyles.h5Black.copyWith(color: AppColors.manatee),
+          ),
+          Photo(
+            photoLink: widget.photo,
+          ),
+        ],
       ),
     );
   }
