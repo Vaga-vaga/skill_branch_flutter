@@ -59,8 +59,6 @@ class _FullScreenImageState extends State<FullScreenImage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ButtonBar(
-                  buttonMinWidth: 105,
-                  buttonHeight: 36,
                   children: <Widget>[
                     FlatButton(
                       onPressed: () => null,
