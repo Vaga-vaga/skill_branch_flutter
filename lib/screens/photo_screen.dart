@@ -1,6 +1,7 @@
 import 'package:FlutterGalleryApp/res/app_icons.dart';
 import 'package:FlutterGalleryApp/res/colors.dart';
 import 'package:FlutterGalleryApp/res/res.dart';
+import 'package:FlutterGalleryApp/screens/feed_screen.dart';
 import 'package:FlutterGalleryApp/widgets/photo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,20 @@ class FullScreenImage extends StatefulWidget {
 }
 
 class _FullScreenImageState extends State<FullScreenImage> {
+  String altDescription;
+  String userName;
+  String name;
+  String photo;
+
+  @override
+  void initState() {
+    super.initState();
+    photo = widget.photo ?? kFlutterDash;
+    altDescription = widget.altDescription ?? 'Lorem ipsum';
+    name = widget.name ?? 'Ivan Ivanov';
+    userName = widget.userName == null ? '@ivan_ivanov' : '@' + widget.userName;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,54 +49,60 @@ class _FullScreenImageState extends State<FullScreenImage> {
         elevation: 0,
         leading: IconButton(
           icon: Icon(
-            Icons.navigate_before,
+            CupertinoIcons.back,
           ),
           onPressed: () {
             return false;
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            child: Container(
-              child: Text('Save'),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Photo(
+              photoLink: photo,
             ),
-            onTap: () => false,
-          ),
-          GestureDetector(
-            behavior: HitTestBehavior.opaque,
-            child: Container(
-              // decoration: Decoration(),
-
-              child: Text('Visit'),
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  color: AppColors.dodgerBlue,
-                  borderRadius: BorderRadius.all(Radius.circular(17))),
+            Text(
+              altDescription,
+              style: AppStyles.h1Black,
             ),
-            onTap: () => false,
-          ),
-          Text(
-            widget.altDescription,
-            style: AppStyles.h3,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-          ),
-          Text(
-            widget.name,
-            style: AppStyles.h1Black,
-          ),
-          Text(
-            widget.userName,
-            style: AppStyles.h5Black.copyWith(color: AppColors.manatee),
-          ),
-          Photo(
-            photoLink: widget.photo,
-          ),
-        ],
+            Text(
+              name,
+              style: AppStyles.h1Black,
+            ),
+            Text(
+              userName,
+              style: AppStyles.h5Black.copyWith(color: AppColors.manatee),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                ButtonBar(
+                  buttonMinWidth: 105,
+                  children: <Widget>[
+                    FlatButton(
+                      onPressed: () => null,
+                      child: Text(
+                        "Save",
+                        style: AppStyles.h4.copyWith(color: AppColors.white),
+                      ),
+                      color: AppColors.dodgerBlue,
+                    ),
+                    FlatButton(
+                        onPressed: () => null,
+                        child: Text(
+                          "Visit",
+                          style: AppStyles.h4.copyWith(color: AppColors.white),
+                        ),
+                        color: AppColors.dodgerBlue)
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

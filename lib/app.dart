@@ -14,10 +14,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FullScreenImage(
-        name: 'Вася пупкин',
-        userName: "@vasya_pupkin",
-        altDescription: "test test test test test test test test",
-        photo: 'http://binar.6hi.ru/48.png',
+        key: Key('FullScreenImage'),
       ),
     );
   }
