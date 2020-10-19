@@ -60,6 +60,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
               children: <Widget>[
                 ButtonBar(
                   buttonMinWidth: 105,
+                  buttonHeight: 36,
                   children: <Widget>[
                     FlatButton(
                       onPressed: () => null,
@@ -68,7 +69,6 @@ class _FullScreenImageState extends State<FullScreenImage> {
                         style: AppStyles.h4.copyWith(color: AppColors.white),
                       ),
                       color: AppColors.dodgerBlue,
-                      height: 36,
                     ),
                     FlatButton(
                         onPressed: () => null,
