@@ -59,9 +59,11 @@ class _FullScreenImageState extends State<FullScreenImage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ButtonBar(
+                  buttonMinWidth: 105,
                   children: <Widget>[
                     FlatButton(
                       onPressed: () => null,
+                      height: 36,
                       child: Text(
                         "Save",
                         style: AppStyles.h4.copyWith(color: AppColors.white),
@@ -70,6 +72,7 @@ class _FullScreenImageState extends State<FullScreenImage> {
                     ),
                     FlatButton(
                         onPressed: () => null,
+                        height: 36,
                         child: Text(
                           "Visit",
                           style: AppStyles.h4.copyWith(color: AppColors.white),
